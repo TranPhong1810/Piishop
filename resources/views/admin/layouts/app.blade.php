@@ -61,6 +61,8 @@
 
     @stack('dashboard')
     @stack('index')
+    @stack('scripts')
+    @stack('addsize')
 </body>
 
 </html>
