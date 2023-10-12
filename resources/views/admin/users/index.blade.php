@@ -19,20 +19,26 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        <td><img width="50px" src="{{ $item->images ? asset('uploads/'.$item->images->url):'upload/default.jpg'}}" alt=""></td>
+                        <td><img width="50px"
+                                src="{{ $item->images ? asset('uploads/' . $item->images->url) : 'upload/default.jpg' }}"
+                                alt=""></td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->phone }}</td>
 
                         <td>
-                            <a class="btn btn-success" href="{{ route('users.edit', $item) }}">Edit</a>
-                            <button class="btn btn-danger"
-                                onclick="if (confirm('Are you sure you want to delete?')) { 
-                                    document.getElementById('item-{{ $item->id }}').submit(); }">
-                                Delete</button>
-                            <form action="{{ route('users.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
-                                @csrf
-                                @method('delete')
-                            </form>
+                            @can('update-user')
+                                <a class="btn btn-success" href="{{ route('users.edit', $item) }}">Edit</a>
+                            @endcan
+                            @can('delete-user')
+                                <button class="btn btn-danger"
+                                    onclick="if (confirm('Are you sure you want to delete?')) { 
+                        document.getElementById('item-{{ $item->id }}').submit(); }">
+                                    Delete</button>
+                                <form action="{{ route('users.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

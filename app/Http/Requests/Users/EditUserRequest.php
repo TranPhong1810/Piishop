@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Users;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class EditUserRequest extends FormRequest
 {
@@ -19,13 +21,15 @@ class EditUserRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules(User $user): array
     {
+        $tableName = $user->getTable();
+        $id = request()->segment('3');
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$this->user,
-            'password' => 'nullable|min:6',
-            'phone' => 'required|unique:users,phone,'.$this->user,
+            'email' => ['required', 'email', Rule::unique($tableName)->ignore($id)],
+            'password' => 'nullable|min:5',
+            'phone' => ['required', Rule::unique($tableName)->ignore($id)],
             'address' => 'required',
             'gender' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,webm,jpeg,gif',

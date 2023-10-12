@@ -29,7 +29,6 @@ class UserController extends Controller
         $users = $this->user->latest('id')->paginate(5);
         return view('admin.users.index', compact('users'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -78,8 +77,7 @@ class UserController extends Controller
     {
         $user = $this->user->findOrFail($id)->load('roles');
         $dataUpdate = $request->except('password');
-        
-        if ($request->password) {
+        if ($request->has('password')) {
             $dataUpdate['password'] = Hash::make($request->password);
         }
         

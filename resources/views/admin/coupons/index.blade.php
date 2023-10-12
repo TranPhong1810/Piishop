@@ -23,15 +23,19 @@
                         <td>{{ $item->value }}</td>
                         <td>{{ $item->expery_date }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('coupons.edit', $item) }}">Edit</a>
-                            <button class="btn btn-danger"
-                                onclick="if (confirm('Are you sure you want to delete?')) { 
-                                    document.getElementById('item-{{ $item->id }}').submit(); }">
-                                Delete</button>
-                            <form action="{{ route('coupons.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
-                                @csrf
-                                @method('delete')
-                            </form>
+                            @can('update-coupon')
+                                <a class="btn btn-success" href="{{ route('coupons.edit', $item) }}">Edit</a>
+                            @endcan
+                            @can('delete-coupon')
+                                <button class="btn btn-danger"
+                                    onclick="if (confirm('Are you sure you want to delete?')) { 
+                            document.getElementById('item-{{ $item->id }}').submit(); }">
+                                    Delete</button>
+                                <form action="{{ route('coupons.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

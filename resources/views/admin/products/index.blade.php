@@ -19,21 +19,27 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        <td><img width="50px" src="{{ $item->images ? asset('uploads/'.$item->images->url):'upload/default.jpg'}}" alt=""></td>
+                        <td><img width="50px"
+                                src="{{ $item->images ? asset('uploads/' . $item->images->url) : 'upload/default.jpg' }}"
+                                alt=""></td>
                         <td>{{ $item->price }}</td>
                         <td>{{ $item->sale }}</td>
 
                         <td>
-                            <a class="btn btn-info" href="{{ route('products.show', $item) }}">Show</a>
-                            <a class="btn btn-success" href="{{ route('products.edit', $item) }}">Edit</a>
-                            <button class="btn btn-danger"
-                                onclick="if (confirm('Are you sure you want to delete?')) { 
-                                    document.getElementById('item-{{ $item->id }}').submit(); }">
-                                Delete</button>
-                            <form action="{{ route('products.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
-                                @csrf
-                                @method('delete')
-                            </form>
+                            @can('update-product')
+                                <a class="btn btn-success" href="{{ route('products.edit', $item) }}">Edit</a>
+                            @endcan
+                            @can('delete-product')
+                                <button class="btn btn-danger"
+                                    onclick="if (confirm('Are you sure you want to delete?')) { 
+                        document.getElementById('item-{{ $item->id }}').submit(); }">
+                                    Delete</button>
+                                <form action="{{ route('products.destroy', $item) }}" id="item-{{ $item->id }}"
+                                    method="post">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

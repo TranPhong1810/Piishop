@@ -19,17 +19,23 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->parent_name }}</td>
 
-                        <td>
-                            <a class="btn btn-success" href="{{ route('categories.edit', $item) }}">Edit</a>
-                            <button class="btn btn-danger"
-                                onclick="if (confirm('Are you sure you want to delete?')) { 
-                                    document.getElementById('item-{{ $item->id }}').submit(); }">
-                                Delete</button>
-                            <form action="{{ route('categories.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
-                                @csrf
-                                @method('delete')
-                            </form>
+
+                        <td> @can('update-category')
+                                <a class="btn btn-success" href="{{ route('categories.edit', $item) }}">Edit</a>
+                            @endcan
+                            @can('delete-category')
+                                <button class="btn btn-danger"
+                                    onclick="if (confirm('Are you sure you want to delete?')) { 
+                                document.getElementById('item-{{ $item->id }}').submit(); }">
+                                    Delete</button>
+                                <form action="{{ route('categories.destroy', $item) }}" id="item-{{ $item->id }}"
+                                    method="post">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            @endcan
                         </td>
+
                     </tr>
                 @endforeach
             </table>

@@ -19,15 +19,19 @@
                         <td>{{ $role->name }}</td>
                         <td>{{ $role->display_name }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('roles.edit', $role) }}">Edit</a>
-                            <button class="btn btn-danger"
-                                onclick="if (confirm('Are you sure you want to delete?')) { 
-                                    document.getElementById('item-{{ $role->id }}').submit(); }">
-                                Delete</button>
-                            <form action="{{ route('roles.destroy', $role) }}" id="item-{{ $role->id }}" method="post">
-                                @csrf
-                                @method('delete')
-                            </form>
+                            @can('update-role')
+                                <a class="btn btn-success" href="{{ route('roles.edit', $item) }}">Edit</a>
+                            @endcan
+                            @can('delete-role')
+                                <button class="btn btn-danger"
+                                    onclick="if (confirm('Are you sure you want to delete?')) { 
+                        document.getElementById('item-{{ $item->id }}').submit(); }">
+                                    Delete</button>
+                                <form action="{{ route('roles.destroy', $item) }}" id="item-{{ $item->id }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

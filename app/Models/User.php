@@ -54,4 +54,12 @@ class User extends Authenticatable
     {
         return $this->morphOne(Image::class, 'imageable');
     }
+    public function assignRoles(array | int $roles): array
+    {
+        return $this->roles()->sync($roles);
+    }
+    public function getImagePathAttribute()
+    {
+        return asset($this->images ? 'uploads/' . $this->images->url : 'upload/default.jpg');
+    }
 }
