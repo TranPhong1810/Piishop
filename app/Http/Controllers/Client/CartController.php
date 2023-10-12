@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Orders\CreateOrderRequest;
 use App\Http\Resources\Cart\CartResource;
 use App\Models\Cart;
 use App\Models\CartProduct;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -104,6 +106,19 @@ class CartController extends Controller
     {
         //
     }
+    public function removeQuantityProduct($id)
+    {
+        $cartProduct =  $this->cartProduct->find($id);
+        $cartProduct->delete();
+        $cart =  $cartProduct->cart;
+        return response()->json([
+            'product_cart_id' => $id,
+            'cart' => new CartResource($cart),
+        ], Response::HTTP_OK);
+    }
+
+
+
     public function updateQuantityProduct(Request $request, $id)
     {
         $cartProduct =  $this->cartProduct->find($id);
@@ -122,5 +137,48 @@ class CartController extends Controller
             'remove_product' => $dataUpdate['product_quantity'] < 1,
             'cart_product_price' => $cartProduct->total_price
         ], Response::HTTP_OK);
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        $name = $request->input('coupon_code');
+        $coupon = $this->coupon->firstWithExperyDate($name, auth()->user()->id);
+        if ($coupon) {
+            toastr()->success('Apply coupon code successfully');
+            session(['coupon_id' => $coupon->id]);
+            session(['discount_amount_price' => $coupon->value]);
+            session(['coupon_code' => $coupon->name]);
+        } else {
+            toastr()->error('Apply an existing coupon code');
+            session()->forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
+        }
+        return redirect()->route('client.cart.index');
+    }
+    public function checkout()
+    {
+        $cart = $this->cart->firstOrCreate(['user_id' => auth()->user()->id]);
+        $cart->load('product');
+        return view('client.carts.checkout', compact('cart'));
+    }
+    public function processCheckout(CreateOrderRequest $request)
+    {
+
+        $dataCreate = $request->all();
+        // dd($dataCreate);
+        $dataCreate['user_id'] = auth()->user()->id;
+        // dd($dataCreate['user_id']);
+        $dataCreate['user_id'] = intval($request->input('user_id'));
+        $dataCreate['status'] = 'pending';
+        $this->order->create($dataCreate);
+        $couponID = Session::get('coupon_id');
+        if ($couponID) {
+            $coupon =  $this->coupon->find(Session::get('coupon_id'));
+            if ($coupon) {
+                $coupon->users()->attach(auth()->user()->id, ['value' => $coupon->value]);
+            }
+        }
+        $cart = $this->cart->firstOrCreateBy(auth()->user()->id);
+        $cart->product()->delete();
+        Session::forget(['coupon_id', 'discount_amount_price', 'coupon_code']);
     }
 }

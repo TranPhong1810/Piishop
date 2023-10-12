@@ -49,6 +49,9 @@ class RoleSeeder extends Seeder
             ['name' => 'update-coupon', 'display_name' => 'Update Coupon','group' => 'Coupon'],
             ['name' => 'show-coupon', 'display_name' => 'Show Coupon','group' => 'Coupon'],
             ['name' => 'delete-coupon', 'display_name' => 'Delete Coupon','group' => 'Coupon'],
+
+            ['name' => 'list-order', 'display_name' => 'List Order','group' => 'orders'],
+            ['name' => 'update-order-status', 'display_name' => 'Delete Order Status','group' => 'orders'],
         ];
         foreach($permission as $item){
             Permission::updateOrCreate($item);

@@ -142,6 +142,7 @@
 
 
     @stack('cart')
+    @stack('scripts')
     <script src="{{ asset('client/js/jquery.js') }}"></script>
     <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('client/js/jquery.scrollUp.min.js') }}"></script>

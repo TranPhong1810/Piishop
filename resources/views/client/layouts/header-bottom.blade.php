@@ -22,6 +22,7 @@
                             @endforeach
                         </ul>
                     </li>
+                    <li><a href="{{route('client.orders.index')}}">Order</a></li>
                     <li><a href="contact-us.html">Contact</a></li>
                 </ul>
             </div>

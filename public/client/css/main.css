@@ -1602,11 +1602,13 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
 }
-
+#cart_items .cart_info .price{
+  padding-left: 106px;
+}
 #cart_items .cart_info .table.table-condensed thead tr {
   height: 51px;
+  width: 100%;
 }
-
 
 #cart_items .cart_info .table.table-condensed tr {
   border-bottom: 1px solid#F7F7F0
@@ -1643,10 +1645,17 @@ h2.title {
   color: #696763
 }
 
+.pricee {
+  margin-top: 213px;
+  margin-left: 100px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
 
-#cart_items .cart_info .cart_price p {
+.pricee p {
   color: #696763;
-  font-size: 18px
+  font-size: 18px;
 }
 
 
@@ -1910,7 +1919,6 @@ textarea {
 }
 
 
-
 .shopper-info p,
 .bill-to p,
 .order-message p {
@@ -1929,10 +1937,8 @@ textarea {
 }
 
 
-.form-two,
 .form-one {
   float: left;
-  width: 47%
 }
 
 
@@ -1959,7 +1965,7 @@ textarea {
 
 .order-message textarea {
   font-size: 12px;
-  height: 335px;
+  height: 90.56px;
   margin-bottom: 20px;
   padding: 15px 20px;
 }

@@ -1,4 +1,5 @@
 $(() => {
+    
     ClassicEditor.create(document.querySelector("#description"), {
         // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
     })

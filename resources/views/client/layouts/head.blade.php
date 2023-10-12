@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>@yield('title', 'Home')</title>
 <link rel="icon" type="image/x-icon" href="{{asset('client/images/shop/3.png')}}">
 <link href="{{asset('client/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -20,4 +21,3 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('client/images/ico/apple-touch-icon-114-precomposed.png')}}">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('client/images/ico/apple-touch-icon-72-precomposed.png')}}">
 <link rel="apple-touch-icon-precomposed" href="{{asset('client/images/ico/apple-touch-icon-57-precomposed.png')}}">
-{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}

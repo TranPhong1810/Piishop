@@ -52,6 +52,18 @@ class Product extends Model
     }
     public function getSalePriceAttribute()
     {
-        return $this->attributes['sale'] ? $this->attributes['price'] - $this->attributes['sale'] : 0;
+        $price = $this->attributes['price'];
+        $sale = $this->attributes['sale'];
+
+        // Kiểm tra nếu có giảm giá
+        if ($sale > 0) {
+            $discount = ($price * $sale) / 100;
+            $salePrice = $price - $discount;
+        } else {
+            $salePrice = $price;
+        }
+
+        return $salePrice;
     }
+
 }
