@@ -58,11 +58,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('be/js/sb-admin-2.min.js')}}"></script>
-
+    {{-- <script src="{{asset('be/js/products/products.js')}}"></script> --}}
     @stack('dashboard')
     @stack('index')
     @stack('scripts')
     @stack('addsize')
+    @stack('order')
 </body>
 
 </html>

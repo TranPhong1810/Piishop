@@ -27,4 +27,7 @@ class CartProduct extends Model
     {
         return CartProduct::whereCartId($cartId)->whereProductId($productId)->whereProductSize($productSize)->first();
     }
+    public function getTotalPriceAttribute(){
+        return $this->product->sale ? $this->product->sale_price * $this->product_quantity : $this->product->price * $this->product_quantity;
+    }
 }

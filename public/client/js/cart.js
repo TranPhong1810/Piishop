@@ -1,34 +1,58 @@
 $(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    // Kiểm tra xem trang có được tải lại từ bộ nhớ đệm hay không
+    if (localStorage.getItem('inputValue')) {
+        // Nếu có, lấy giá trị từ bộ nhớ đệm và đặt nó vào input
+        var storedValue = localStorage.getItem('inputValue');
+        $('.cart_quantity_input').val(storedValue);
+    }
 
-    // $(document).ready(function () {
-    //     // Lấy tất cả các nút "Plus" và "Minus"
-    //     $(".btn-update-quantity").click(function () {
-    //         // Lấy ID của sản phẩm tương ứng từ thuộc tính data-id
-    //         var productId = $(this).data("id");
+    $('.quantity button').on('click', function () {
+        var button = $(this);
+        var inputElement = button.parent().parent().find('input');
+        var oldValue = parseFloat(inputElement.val());
 
-    //         // Lấy trường nhập số lượng dựa trên ID sản phẩm
-    //         var quantityInput = $("#productQuantityInput-" + productId);
+        if (button.hasClass('btn-plus')) {
+            var newVal = oldValue + 1;
+        } else {
+            if (oldValue > 0) {
+                var newVal = oldValue - 1;
+            } else {
+                newVal = 0;
+            }
+        }
 
-    //         // Lấy giá trị hiện tại trong trường nhập số lượng
-    //         var currentQuantity = parseInt(quantityInput.val());
+        // Lưu giá trị mới vào bộ nhớ đệm
+        localStorage.setItem('inputValue', newVal);
 
-    //         // Kiểm tra xem nút "Plus" hay "Minus" đã được nhấp
-    //         if ($(this).hasClass("btn-plus")) {
-    //             // Nút "Plus" được nhấp, tăng số lượng lên 1
-    //             currentQuantity++;
-    //         } else if ($(this).hasClass("btn-minus")) {
-    //             // Nút "Minus" được nhấp, giảm số lượng đi 1, nhưng đảm bảo không nhỏ hơn 1
-    //             currentQuantity = Math.max(currentQuantity - 1, 1);
-    //         }
+        // Đặt giá trị mới vào input
+        inputElement.val(newVal);
+    });
 
-    //         // Cập nhật giá trị trong trường nhập số lượng
-    //         quantityInput.val(currentQuantity);
+    function confirmDelete() {
+        return new Promise((resolve, reject) => {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    resolve(true);
+                } else {
+                    reject(false);
+                }
+            });
+        });
+    }
 
-    //         // Gửi yêu cầu cập nhật số lượng đến máy chủ (nếu cần)
-    //         // Thực hiện phần này theo yêu cầu của ứng dụng của bạn
-    //     });
-    // });
-    
     getTotalValue();
 
     function getTotalValue() {
@@ -36,7 +60,6 @@ $(function () {
         let couponPrice = $(".coupon-div")?.data("price") ?? 0;
         $(".total-price-all").text(`$${total - couponPrice}`);
     }
-
     $(document).on("click", ".btn-remove-product", function (e) {
         let url = $(this).data("action");
         confirmDelete()
@@ -55,6 +78,7 @@ $(function () {
             .catch(function () { });
     });
 
+
     const TIME_TO_UPDATE = 1000;
 
     $(document).on(
@@ -62,6 +86,7 @@ $(function () {
         ".btn-update-quantity",
         _.debounce(function (e) {
             let url = $(this).data("action");
+            console.log(url);
             let id = $(this).data("id");
             let data = {
                 product_quantity: $(`#productQuantityInput-${id}`).val(),
@@ -78,7 +103,7 @@ $(function () {
                     );
                 }
                 getTotalValue();
-                cartProductPrice;
+
                 $(".total-price").text(`$${cart.total_price}`);
                 Swal.fire({
                     position: "top-end",
