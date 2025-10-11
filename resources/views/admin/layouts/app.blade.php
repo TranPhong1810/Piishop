@@ -1,69 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-@include('admin.layouts.header')
+    @include('admin.layouts.header')
 </head>
 
-<body id="page-top">
+<body class="body">
 
-    <!-- Page Wrapper -->
+    <!-- #wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
-        @include('admin.layouts.sidebar')
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                @include('admin.layouts.topbar')
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
-                @yield('content')
-                <!-- /.container-fluid -->
-
+        <!-- #page -->
+        <div id="page" class="">
+            <!-- layout-wrap -->
+            <div class="layout-wrap">
+                <!-- preload -->
+                <div id="preload" class="preload-container">
+                    <div class="preloading">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- /preload -->
+                <!-- section-menu-left -->
+                <div class="section-menu-left">
+                    @include('admin.layouts.sidebar')
+                </div>
+                <!-- /section-menu-left -->
+                <!-- section-content-right -->
+                <div class="section-content-right">
+                    <!-- header-dashboard -->
+                    <div class="header-dashboard">
+                        @include('admin.layouts.topbar')
+                    </div>
+                    <!-- /header-dashboard -->
+                    <!-- main-content -->
+                    <div class="main-content">
+                        <!-- main-content-wrap -->
+                        <div class="main-content-inner">
+                            <!-- main-content-wrap -->
+                            @yield('content')
+                            <!-- /main-content-wrap -->
+                        </div>
+                        <!-- /main-content-wrap -->
+                        <!-- bottom-page -->
+                        <div class="bottom-page">
+                            @include('admin.layouts.footer')
+                        </div>
+                        <!-- /bottom-page -->
+                    </div>
+                    <!-- /main-content -->
+                </div>
+                <!-- /section-content-right -->
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            @include('admin.layouts.footer')
-            <!-- End of Footer -->
-
+            <!-- /layout-wrap -->
         </div>
-        <!-- End of Content Wrapper -->
-
+        <!-- /#page -->
     </div>
-    <!-- End of Page Wrapper -->
+    <!-- /#wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+    <!-- Javascript -->
+    <script src="{{ asset('backend/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('backend/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('backend/js/bootstrap-select.min.js')}}"></script>
+    <script src="{{ asset('backend/js/zoom.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/line-chart-1.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/line-chart-2.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/line-chart-3.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/line-chart-4.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/line-chart-5.js')}}"></script>
+    <script src="{{ asset('backend/js/apexcharts/line-chart-6.js')}}"></script>
+    <script src="{{ asset('backend/js/switcher.js')}}"></script>
+    <script src="{{ asset('backend/js/theme-settings.js')}}"></script>
+    <script src="{{ asset('backend/js/main.js')}}"></script>
 
-    <!-- Logout Modal-->
-    @include('admin.layouts.logout')
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('be/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('be/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset('be/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="{{asset('be/js/sb-admin-2.min.js')}}"></script>
-    {{-- <script src="{{asset('be/js/products/products.js')}}"></script> --}}
-    @stack('dashboard')
-    @stack('index')
-    @stack('scripts')
-    @stack('addsize')
-    @stack('order')
 </body>
+
 
 </html>

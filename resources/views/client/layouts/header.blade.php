@@ -1,24 +1,20 @@
-<div class="header_top"><!--header_top-->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="contactinfo">
-                    <ul class="nav nav-pills">
-                        <li><a href="#"><i class="fa fa-phone"></i> 0395419293</a></li>
-                        <li><a href="#"><i class="fa fa-envelope"></i> tranphongbackend@gmail.com</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="social-icons pull-right">
-                    <ul class="nav navbar-nav">
-                        <li><a href="https://www.facebook.com/phong.tranvan.1441"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://github.com/TranPhong1810/Piishop"><i class="fa fa-github"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Male-Fashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/nice-select.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">

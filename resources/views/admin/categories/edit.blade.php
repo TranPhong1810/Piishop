@@ -1,42 +1,62 @@
 @extends('admin.layouts.app')
 @section('title', 'Edit Category' . $category->name)
 @section('content')
-    <div class="card">
-        <div class="text-center">
-            <h1>Edit Category</h1>
+    <div class="main-content-wrap">
+        <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+            <h3>Category infomation</h3>
+            <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                <li>
+                    <a href="index.html">
+                        <div class="text-tiny">Dashboard</div>
+                    </a>
+                </li>
+                <li>
+                    <i class="icon-chevron-right"></i>
+                </li>
+                <li>
+                    <a href="#">
+                        <div class="text-tiny">Category</div>
+                    </a>
+                </li>
+                <li>
+                    <i class="icon-chevron-right"></i>
+                </li>
+                <li>
+                    <div class="text-tiny">New category</div>
+                </li>
+            </ul>
         </div>
-        <div>
-            <form action="{{ route('categories.update', $category) }}" method="post" enctype="multipart/form-data">
+        <!-- new-category -->
+        <div class="wg-box">
+            <form class="form-new-product form-style-1" action="{{ route('categories.update', $category) }}" method="POST"
+                enctype="multipart/form-data">
                 @csrf
-                @method('put')
-                <div class="form-group mx-3">
-                    <label for="">Name</label>
-                    <input type="text" name="name" value="{{ old('name') ?? $category->name }}" class="form-control">
-                    @error('name')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
+                @method('PUT')
+                <fieldset class="name">
+                    <div class="body-title">Category name <span class="tf-color-1">*</span></div>
+                    <input class="flex-grow" type="text" placeholder="Category name" name="name" tabindex="0"
+                        value="{{ old('name') ?? $category->name }}" aria-required="true">
+                </fieldset>
                 @if ($category->childrens->count() < 1)
-                    <div class="input-group mx-3 mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Parent Category</label>
-                        <select class="form-select" name="parent_id" value="" id="inputGroupSelect01">
-                            <option value="">Select Category</option>
-                            @foreach ($parentCategories as $item)
-                                <option value="{{ $item->id }}"
-                                    {{ (old('parent_id') ?? $category->parent_id) == $item->id ? 'selected' : '' }}>
-                                    {{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('gender')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+                    <fieldset class="category">
+                        <div class="body-title">Parent category</div>
+                        <div class="select flex-grow">
+                            <select class="">
+                                <option>Select parent</option>
+                                @foreach ($parentCategories as $item)
+                                    <{{ (old('parent_id') ?? $category->parent_id) == $item->id ? 'selected' : '' }}>
+                                        {{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </fieldset>
                 @endif
-
-
-
-                <button type="submit" class="mx-3 btn btn-primary">Add Role</button>
+                <div class="bot">
+                    <div></div>
+                    <button class="tf-button w208" type="submit">Save</button>
+                </div>
             </form>
         </div>
+        <!-- /new-category -->
     </div>
 @endsection

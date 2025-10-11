@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\OderController;
@@ -41,11 +43,22 @@ Route::middleware('auth')->group(function () {
     Route::post('apply-coupon', [CartController::class, 'applyCoupon'])->name('client.carts.apply_oupon');
     Route::get('checkout', [CartController::class, 'checkout'])->name('client.checkout.index')->middleware('user.can_checkout_cart');
     Route::post('process-checkout', [CartController::class, 'processCheckout'])->name('client.checkout.proccess')->middleware('user.can_checkout_cart');
-    Route::get('list-orders',[OrderController::class, 'index'])->name('client.orders.index');
-    Route::delete('orders/cancel/{id}',[OrderController::class,'cancel'])->name('client.orders.cancel');
+    Route::get('list-orders', [OrderController::class, 'index'])->name('client.orders.index');
+    Route::delete('orders/cancel/{id}', [OrderController::class, 'cancel'])->name('client.orders.cancel');
 });
 
-Auth::routes();
+//LOGIN
+Route::get('/login', [AuthController::class, 'index'])
+    ->name('auth.login')
+    ->middleware('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+Route::get('/register', [AuthController::class, 'signUp'])->name('auth.register');
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register.post');
+Route::get('/verify-email/{token}', [VerifyEmailController::class, 'verify'])->name('auth.verify-email');
+Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -59,5 +72,5 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders.index')->middleware('list-order');
-    Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status')->middleware('update-order-status'); 
+    Route::post('update-status/{id}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update_status')->middleware('update-order-status');
 });

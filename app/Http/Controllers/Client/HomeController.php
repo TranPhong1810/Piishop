@@ -29,6 +29,6 @@ class HomeController extends Controller
     public function index()
     {
         $products = $this->product->latest('id')->paginate(6);
-        return view('client.home.index',compact('products'));
+        return view('client.home',compact('products'));
     }
 }

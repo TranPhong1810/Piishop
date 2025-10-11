@@ -1,7 +1,4 @@
-<footer class="sticky-footer bg-white">
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
-        </div>
-    </div>
-</footer>
+<div class="body-text">Copyright © 2024 Remos. Design with</div>
+<i class="icon-heart"></i>
+<div class="body-text">by <a href="https://themeforest.net/user/themesflat/portfolio">Themesflat</a> All rights
+    reserved.</div>

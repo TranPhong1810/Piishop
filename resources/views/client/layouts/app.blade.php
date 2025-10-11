@@ -1,154 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    @include('client.layouts.head')
-</head><!--/head-->
+    @include('client.layouts.header')
+</head>
 
 <body>
-    <header id="header"><!--header-->
-        @include('client.layouts.header')
-        </div><!--/header_top-->
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-        <div class="header-middle"><!--header-middle-->
-            @include('client.layouts.header-middle')
-        </div><!--/header-middle-->
+    <!-- Offcanvas Menu Begin -->
+    <div class="offcanvas-menu-overlay"></div>
+    <div class="offcanvas-menu-wrapper">
+        @include('client.layouts.topbar')
+    </div>
+    <!-- Offcanvas Menu End -->
 
-        <div class="header-bottom"><!--header-bottom-->
-            @include('client.layouts.header-bottom')
-        </div><!--/header-bottom-->
-    </header><!--/header-->
-    <section id="slider"><!--slider-->
+    <!-- Header Section Begin -->
+    <header class="header">
+        @include('client.layouts.headertop')
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+        @include('client.layouts.bannertop')
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Banner Section Begin -->
+    <section class="banner spad">
+        @include('client.layouts.banner')
+    </section>
+    <!-- Banner Section End -->
+
+    @yield('content')
+
+    <!-- Instagram Section Begin -->
+    <section class="instagram spad">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
-                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#slider-carousel" data-slide-to="1"></li>
-                            <li data-target="#slider-carousel" data-slide-to="2"></li>
-                        </ol>
-
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <div class="col-sm-6">
-                                    <h1><span>Pii</span>-Shop</h1>
-                                    <h2>Free E-Commerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{ asset('client/images/home/c.png') }}" class="girl img-responsive"
-                                        alt="" />
-                                    <img src="" class="pricing"
-                                        alt="" />
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>Pii</span>-Shop</h1>
-                                    <h2>100% Responsive Design</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{ asset('client/images/home/cc.png') }}" class="girl img-responsive"
-                                        alt="" />
-                                    <img src="" class="pricing"
-                                        alt="" />
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>Pii</span>-Shop</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{ asset('client/images/home/girl3.jpg') }}" class="girl img-responsive"
-                                        alt="" />
-                                    <img src="" class="pricing"
-                                        alt="" />
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-                            <i class="fa fa-angle-left"></i>
-                        </a>
-                        <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section><!--/slider-->
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="left-sidebar">
-                        <div class="left-sidebar">
-                            <h2>Category</h2>
-                            <div class="panel-group category-products" id="accordian">
-                                @foreach ($categories as $item)
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a
-                                                    href="{{ route('client.product.index', ['category_id' => $item->id]) }}">{{ $item->name }}</a>
-                                            </h4>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-
-                        <div class="price-range"><!--price-range-->
-                            <h2>Price Range</h2>
-                            <div class="well text-center">
-                                <input type="text" class="span2" value="" data-slider-min="0"
-                                    data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]"
-                                    id="sl2"><br />
-                                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-                            </div>
-                        </div><!--/price-range-->
-
-                        <div class="shipping text-center"><!--shipping-->
-                            <img src="{{ asset('client/images/home/shipping.jpg') }}" alt="" />
-                        </div><!--/shipping-->
-
+                <div class="col-lg-8">
+                    <div class="instagram__pic">
+                        <div class="instagram__pic__item set-bg" data-setbg="{{ asset('frontend/img/instagram/instagram-1.jpg') }}"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="{{ asset('frontend/img/instagram/instagram-2.jpg') }}"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="{{ asset('frontend/img/instagram/instagram-3.jpg') }}"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="{{ asset('frontend/img/instagram/instagram-4.jpg') }}"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="{{ asset('frontend/img/instagram/instagram-5.jpg') }}"></div>
+                        <div class="instagram__pic__item set-bg" data-setbg="{{ asset('frontend/img/instagram/instagram-6.jpg') }}"></div>
                     </div>
                 </div>
-                @yield('content')
-
+                <div class="col-lg-4">
+                    <div class="instagram__text">
+                        <h2>Instagram</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.</p>
+                        <h3>#Male_Fashion</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+    <!-- Instagram Section End -->
 
+    <!-- Latest Blog Section Begin -->
+    <section class="latest spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Latest News</span>
+                        <h2>Fashion New Trends</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="{{ asset('frontend/img/blog/blog-1.jpg') }}"></div>
+                        <div class="blog__item__text">
+                            <span><img src="{{ asset('frontend/img/icon/calendar.png') }}" alt=""> 16 February 2020</span>
+                            <h5>What Curling Irons Are The Best Ones</h5>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="{{ asset('frontend/img/blog/blog-2.jpg') }}"></div>
+                        <div class="blog__item__text">
+                            <span><img src="{{ asset('frontend/img/icon/calendar.png') }}" alt=""> 21 February 2020</span>
+                            <h5>Eternity Bands Do Last Forever</h5>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic set-bg" data-setbg="{{ asset('frontend/img/blog/blog-3.jpg') }}"></div>
+                        <div class="blog__item__text">
+                            <span><img src="{{ asset('frontend/img/icon/calendar.png') }}" alt=""> 28 February 2020</span>
+                            <h5>The Health Benefits Of Sunglasses</h5>
+                            <a href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Latest Blog Section End -->
 
-    <footer id="footer"><!--Footer-->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
         @include('client.layouts.footer')
-    </footer><!--/Footer-->
+    </footer>
+    <!-- Footer Section End -->
 
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
 
-    @stack('cart')
-    @stack('scripts')
-    <script src="{{ asset('client/js/jquery.js') }}"></script>
-    <script src="{{ asset('client/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.scrollUp.min.js') }}"></script>
-    <script src="{{ asset('client/js/price-range.js') }}"></script>
-    <script src="{{ asset('client/js/jquery.prettyPhoto.js') }}"></script>
-    <script src="{{ asset('client/js/main.js') }}"></script>
+    <!-- Js Plugins -->
+    <script src="{{ asset('frontend/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/jquery.slicknav.js') }}"></script>
+    <script src="{{ asset('frontend/js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
 </body>
 
 </html>

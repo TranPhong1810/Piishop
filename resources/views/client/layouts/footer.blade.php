@@ -1,88 +1,62 @@
-<div class="footer-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="companyinfo">
-                    <div class="imgg">
-                        <a href="{{ route('home') }}">
-                            <h2><span>Pii</span>-Shop</h2>
-                            <img width="100px" src="{{ asset('client/images/shop/3.png') }}" alt="">
-                        </a>
-                    </div>
-                    <div class="row">
-                        <p class="mb-2"><i class="fa fa-map-marker text-primary mr-3"></i> HA NOI</p>
-                        <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>tranphongbackend@gmail.com</p>
-                        <p class="mb-0"><i class="fa fa-phone-square text-primary mr-3"></i> +84395419293</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="{{ asset('frontend/img/footer-logo.png') }}" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="{{ asset('frontend/img/payment.png') }}" alt=""></a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="footer-widget">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>Service</h2>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Online Help</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Order Status</a></li>
-                        <li><a href="#">Change Location</a></li>
-                        <li><a href="#">FAQ’s</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>Pii Shop</h2>
-                    @foreach ($categories->take(5) as $item)
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a
-                                    href="{{ route('client.product.index', ['category_id' => $item->id]) }}">{{ $item->name }}</a>
-                            </li>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Shoes</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Sale</a></li>
                         </ul>
-                    @endforeach
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>Policies</h2>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Privecy Policy</a></li>
-                        <li><a href="#">Refund Policy</a></li>
-                        <li><a href="#">Billing System</a></li>
-                        <li><a href="#">Ticket System</a></li>
-                    </ul>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <div class="single-widget">
-                    <h2>About Shopper</h2>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Company Information</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Store Location</a></li>
-                        <li><a href="#">Affillate Program</a></li>
-                        <li><a href="#">Copyright</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-3 col-sm-offset-1">
-                <div class="single-widget">
-                    <h2>About Shopper</h2>
-                    <form action="#" class="searchform">
-                        <input type="text" placeholder="Your email address" />
-                        <button type="submit" class="btn btn-default"><i
-                                class="fa fa-arrow-circle-o-right"></i></button>
-                        <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                    </form>
-                </div>
-            </div>
-
         </div>
-    </div>
-</div>

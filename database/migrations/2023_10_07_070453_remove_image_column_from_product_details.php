@@ -9,7 +9,9 @@ class RemoveImageColumnFromProductDetails extends Migration
     public function up()
     {
         Schema::table('product_details', function (Blueprint $table) {
-            $table->dropColumn('image');
+            if (Schema::hasColumn('product_details', 'image')) {
+                $table->dropColumn('image');
+            }
         });
     }
 
