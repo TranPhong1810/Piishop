@@ -24,7 +24,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-restore:before {
+  content: "\ea38";
+}
 .icon-activity:before {
   content: "\e900";
 }

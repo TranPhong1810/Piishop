@@ -1,10 +1,10 @@
                         <div class="wrap">
                             <div class="header-left">
-                                <a href="index.html">
+                                {{-- <a href="index.html">
                                     <img class="" id="logo_header_mobile" alt="" src="images/logo/logo.png')}}"
                                         data-light="images/logo/logo.png')}}" data-dark="images/logo/logo-dark.png')}}"
                                         data-width="154px" data-height="52px" data-retina="images/logo/logo@2x.png')}}">
-                                </a>
+                                </a> --}}
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>
                                 </div>
@@ -394,7 +394,7 @@
                                             id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
                                             <span class="header-user wg-user">
                                                 <span class="image">
-                                                    <img src="images/avatar/user-1.png')}}" alt="">
+                                                    <img src="{{ asset('backend/images/avatar/user-1.png')}}" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
                                                     <span class="body-title mb-2">Kristin Watson</span>

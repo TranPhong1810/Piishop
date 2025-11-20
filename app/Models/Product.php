@@ -5,15 +5,18 @@ namespace App\Models;
 use App\Traits\HandleUploadImageTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory, HandleUploadImageTrait;
+    use HasFactory, HandleUploadImageTrait, SoftDeletes;
     protected $fillable = [
         'name',
         'description',
         'sale',
         'price',
+        'deleted_at',
+        'publish',
     ];
     public function images()
     {
@@ -44,7 +47,7 @@ class Product extends Model
     // }
     public function getBy($request, $category_id)
     {
-        return $this->whereHas('categories', fn ($q) => $q->where('category_id', $category_id))->paginate(10);
+        return $this->whereHas('categories', fn($q) => $q->where('category_id', $category_id))->paginate(10);
     }
     public function getImagePathAttribute()
     {
@@ -52,18 +55,17 @@ class Product extends Model
     }
     public function getSalePriceAttribute()
     {
-        $price = $this->attributes['price'];
-        $sale = $this->attributes['sale'];
+        $price = (float) $this->attributes['price'];
+        $sale = (float) $this->attributes['sale'];
 
-        // Kiểm tra nếu có giảm giá
         if ($sale > 0) {
+            $sale = min($sale, 100); // tránh giảm >100%
             $discount = ($price * $sale) / 100;
             $salePrice = $price - $discount;
         } else {
             $salePrice = $price;
         }
 
-        return $salePrice;
+        return round($salePrice, 2); // làm tròn 2 chữ số thập phân
     }
-
 }

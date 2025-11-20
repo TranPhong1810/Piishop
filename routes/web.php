@@ -67,6 +67,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
+    Route::get('products/trashed', [ProductController::class, 'indexSoftDelete'])->name('products.trashed');
+    Route::post('products/{id}/restore', [ProductController::class, 'restore'])->name('products.restore');
+    Route::delete('products/{id}/force-delete', [ProductController::class, 'forceDelete'])->name('products.forceDelete');
     Route::resource('products', ProductController::class);
     Route::resource('coupons', CouponController::class);
 

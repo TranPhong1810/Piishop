@@ -68,6 +68,7 @@
                 <ul class="flex flex-column">
                     @foreach ($categories as $item)
                         <li class="product-item gap14">
+                            
                             <div class="flex items-center justify-between gap20 flex-grow">
                                 <div class="name">
                                     <h3 class="body-title-2">{{ $item->name }}</h3>

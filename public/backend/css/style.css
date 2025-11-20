@@ -5207,7 +5207,7 @@ select.h40 {
 .tf-product-info-variant-picker {
   display: flex;
   gap: 36px;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .variant-picker-item .variant-picker-label {

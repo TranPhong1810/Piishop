@@ -69,28 +69,18 @@
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="sub-menu-item">
-                                                <a href="add-product.html" class="">
+                                                <a href="{{route('products.create')}}" class="">
                                                     <div class="text">Add Product</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="product-list.html" class="">
+                                                <a href="{{route('products.index')}}" class="">
                                                     <div class="text">Product List</div>
                                                 </a>
                                             </li>
                                             <li class="sub-menu-item">
-                                                <a href="product-detail-1.html" class="">
-                                                    <div class="text">Product Detail 1</div>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-item">
-                                                <a href="product-detail-2.html" class="">
-                                                    <div class="text">Product Detail 2</div>
-                                                </a>
-                                            </li>
-                                            <li class="sub-menu-item">
-                                                <a href="product-detail-3.html" class="">
-                                                    <div class="text">Product Detail 3</div>
+                                                <a href="{{ route('products.trashed') }}" class="">
+                                                    <div class="text">Product Trash</div>
                                                 </a>
                                             </li>
                                         </ul>
